@@ -4,20 +4,30 @@ import styled from "styled-components";
 function App() {
   return (
     <Container>
-      <Column>
-        <spn>Name</spn>
-        <input></input>
-      </Column>
-      <Column>
-        <spn>Time zone</spn>
-        <input></input>
-      </Column>
-      <button>Add</button>
+      <Row>
+        <Column>
+          <spn>Name</spn>
+          <input></input>
+        </Column>
+        <Column>
+          <spn>Time zone</spn>
+          <input></input>
+        </Column>
+        <button>Add</button>
+      </Row>
+      <Row>
+        <Column>
+          <button>X</button>
+          <span>10:00:59</span>
+        </Column>
+      </Row>
     </Container>
   );
 }
 
-const Container = styled.div`
+const Container = styled.div``;
+
+const Row = styled.div`
   display: flex;
   flex-direction: row;
   align-items: flex-end;
