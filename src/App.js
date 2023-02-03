@@ -1,7 +1,12 @@
 import "./App.css";
 import styled from "styled-components";
+import { useState } from "react";
 
 function App() {
+  const [state, setState] = useState([
+    { name: "Moscow", time: "10:00:59" },
+    { name: "London", time: "10:30:59" },
+  ]);
   return (
     <Container>
       <Row>
@@ -16,14 +21,15 @@ function App() {
         <button>Add</button>
       </Row>
       <Row>
-        <Clock name = "Moscow" time= "10:00:59"/>
-        <Clock name = "Moscow" time= "10:30:59"/>
+        {state.map((item) => (
+          <Clock name={item.name} time={item.time} />
+        ))}
       </Row>
     </Container>
   );
 }
 
-const Clock = ({time, name}) => {
+const Clock = ({ time, name }) => {
   return (
     <Column>
       <button>X</button>
