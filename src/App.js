@@ -20,14 +20,20 @@ function App() {
         </Column>
         <button>Add</button>
       </Row>
-      <Row>
-        {state.map((item) => (
-          <Clock name={item.name} time={item.time} />
-        ))}
-      </Row>
+      <Clocks clocks={state} />
     </Container>
   );
 }
+
+const Clocks = ({ clocks }) => {
+  return (
+    <Row>
+      {clocks.map((item) => (
+        <Clock name={item.name} time={item.time} />
+      ))}
+    </Row>
+  );
+};
 
 const Clock = ({ time, name }) => {
   return (
