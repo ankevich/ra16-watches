@@ -16,14 +16,22 @@ function App() {
         <button>Add</button>
       </Row>
       <Row>
-        <Column>
-          <button>X</button>
-          <span>10:00:59</span>
-        </Column>
+        <Clock name = "Moscow" time= "10:00:59"/>
+        <Clock name = "Moscow" time= "10:30:59"/>
       </Row>
     </Container>
   );
 }
+
+const Clock = ({time, name}) => {
+  return (
+    <Column>
+      <button>X</button>
+      <span>{name}</span>
+      <span>{time}</span>
+    </Column>
+  );
+};
 
 const Container = styled.div``;
 
