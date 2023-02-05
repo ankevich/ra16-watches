@@ -7,6 +7,10 @@ function App() {
     { name: "Moscow", time: "10:00:59" },
     { name: "London", time: "10:30:59" },
   ]);
+  const deleteClock = (index) => {
+    const newState = state.filter((item, i) => i !== index);
+    setState(newState);
+  }
   return (
     <Container>
       <Row>
@@ -20,25 +24,25 @@ function App() {
         </Column>
         <button>Add</button>
       </Row>
-      <Clocks clocks={state} />
+      <Clocks clocks={state} deleteClock = {deleteClock} />
     </Container>
   );
 }
 
-const Clocks = ({ clocks }) => {
+const Clocks = ({ clocks, deleteClock }) => {
   return (
     <Row>
-      {clocks.map((item) => (
-        <Clock name={item.name} time={item.time} />
+      {clocks.map((item, index) => (
+        <Clock name={item.name} time={item.time} index={index} deleteClock = {deleteClock} />
       ))}
     </Row>
   );
 };
 
-const Clock = ({ time, name }) => {
+const Clock = ({ index, time, name, deleteClock }) => {
   return (
     <Column>
-      <button>X</button>
+      <button onClick={()=> {deleteClock(index)}}>X</button>
       <span>{name}</span>
       <span>{time}</span>
     </Column>
