@@ -3,28 +3,47 @@ import styled from "styled-components";
 import { useState } from "react";
 
 function App() {
-  const [state, setState] = useState([
-    { name: "Moscow", time: "10:00:59" },
-    { name: "London", time: "10:30:59" },
-  ]);
+  const [state, setState] = useState([]);
+
+  const [name, setName] = useState("");
+  const [time, setTime] = useState("");
+
   const deleteClock = (index) => {
     const newState = state.filter((item, i) => i !== index);
     setState(newState);
-  }
+  };
+  const addClock = (name, time) => {
+    const newState = [...state, { name: name, time: time }];
+    setState(newState);
+  };
   return (
     <Container>
       <Row>
         <Column>
           <spn>Name</spn>
-          <input></input>
+          <input
+            onChange={(event) => {
+              setName(event.target.value);
+            }}
+          ></input>
         </Column>
         <Column>
           <spn>Time zone</spn>
-          <input></input>
+          <input
+            onChange={(event) => {
+              setTime(event.target.value);
+            }}
+          ></input>
         </Column>
-        <button>Add</button>
+        <button
+          onClick={() => {
+            addClock(name, time);
+          }}
+        >
+          Add
+        </button>
       </Row>
-      <Clocks clocks={state} deleteClock = {deleteClock} />
+      <Clocks clocks={state} deleteClock={deleteClock} />
     </Container>
   );
 }
@@ -33,7 +52,12 @@ const Clocks = ({ clocks, deleteClock }) => {
   return (
     <Row>
       {clocks.map((item, index) => (
-        <Clock name={item.name} time={item.time} index={index} deleteClock = {deleteClock} />
+        <Clock
+          name={item.name}
+          time={item.time}
+          index={index}
+          deleteClock={deleteClock}
+        />
       ))}
     </Row>
   );
@@ -42,7 +66,13 @@ const Clocks = ({ clocks, deleteClock }) => {
 const Clock = ({ index, time, name, deleteClock }) => {
   return (
     <Column>
-      <button onClick={()=> {deleteClock(index)}}>X</button>
+      <button
+        onClick={() => {
+          deleteClock(index);
+        }}
+      >
+        X
+      </button>
       <span>{name}</span>
       <span>{time}</span>
     </Column>
