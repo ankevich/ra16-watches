@@ -67,6 +67,11 @@ const Clocks = ({ clocks, deleteClock }) => {
 };
 
 const Clock = ({ index, time, name, deleteClock }) => {
+  const [tick, tock] = useState(0);
+  setTimeout(() => {
+    tock(tick + 1);
+  }, 1000);
+
   return (
     <Column>
       <button
