@@ -1,6 +1,9 @@
 import "./App.css";
+import Moment from "react-moment";
+import "moment-timezone";
 import styled from "styled-components";
 import { useState } from "react";
+import { tz } from "moment-timezone";
 
 function App() {
   const [state, setState] = useState([]);
@@ -74,7 +77,11 @@ const Clock = ({ index, time, name, deleteClock }) => {
         X
       </button>
       <span>{name}</span>
-      <span>{time}</span>
+      <Moment
+        date={new Date()}
+        add={{ hours: time }}
+        format="HH:mm:ss"
+      ></Moment>
     </Column>
   );
 };
